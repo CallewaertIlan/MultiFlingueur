@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\MultiFlingueur.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\MultiFlingueur.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\MultiFlingueurEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\MultiFlingueur">
+      <UniqueIdentifier>{F43B7E1A-68F6-39E5-9F67-E5698D9D55E3}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\MultiFlingueur\MultiFlingueur.Build.cs">
+      <Filter>Source\MultiFlingueur</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueur.cpp">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MultiFlingueur\MultiFlingueur.h">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueurCharacter.cpp">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MultiFlingueur\MultiFlingueurCharacter.h">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueurGameMode.cpp">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MultiFlingueur\MultiFlingueurGameMode.h">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueurPlayerController.cpp">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MultiFlingueur\MultiFlingueurPlayerController.h">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueurProjectile.cpp">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MultiFlingueur\MultiFlingueurProjectile.h">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\MultiFlingueur\TP_PickUpComponent.cpp">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MultiFlingueur\TP_PickUpComponent.h">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\MultiFlingueur\TP_WeaponComponent.cpp">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MultiFlingueur\TP_WeaponComponent.h">
+      <Filter>Source\MultiFlingueur</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

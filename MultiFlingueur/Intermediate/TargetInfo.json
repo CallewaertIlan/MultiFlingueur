@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "MultiFlingueur",
+			"Path": "..\\Source\\MultiFlingueur.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "MultiFlingueurEditor",
+			"Path": "..\\Source\\MultiFlingueurEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
