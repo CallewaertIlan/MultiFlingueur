@@ -18,8 +18,8 @@ ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
 ENGINE_API UEnum* Z_Construct_UEnum_Engine_EEndPlayReason();
 ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputAction_NoRegister();
 ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputMappingContext_NoRegister();
-MULTIFLINGUEUR_API UClass* Z_Construct_UClass_AMultiFlingueurCharacter_NoRegister();
 MULTIFLINGUEUR_API UClass* Z_Construct_UClass_AMultiFlingueurProjectile_NoRegister();
+MULTIFLINGUEUR_API UClass* Z_Construct_UClass_AMyCaracter_NoRegister();
 MULTIFLINGUEUR_API UClass* Z_Construct_UClass_UTP_WeaponComponent();
 MULTIFLINGUEUR_API UClass* Z_Construct_UClass_UTP_WeaponComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_MultiFlingueur();
@@ -30,7 +30,7 @@ struct Z_Construct_UFunction_UTP_WeaponComponent_AttachWeapon_Statics
 {
 	struct TP_WeaponComponent_eventAttachWeapon_Parms
 	{
-		AMultiFlingueurCharacter* TargetCharacter;
+		AMyCaracter* TargetCharacter;
 		bool ReturnValue;
 	};
 #if WITH_METADATA
@@ -51,7 +51,7 @@ struct Z_Construct_UFunction_UTP_WeaponComponent_AttachWeapon_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UTP_WeaponComponent_AttachWeapon_Statics::NewProp_TargetCharacter = { "TargetCharacter", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(TP_WeaponComponent_eventAttachWeapon_Parms, TargetCharacter), Z_Construct_UClass_AMultiFlingueurCharacter_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UTP_WeaponComponent_AttachWeapon_Statics::NewProp_TargetCharacter = { "TargetCharacter", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(TP_WeaponComponent_eventAttachWeapon_Parms, TargetCharacter), Z_Construct_UClass_AMyCaracter_NoRegister, METADATA_PARAMS(0, nullptr) };
 void Z_Construct_UFunction_UTP_WeaponComponent_AttachWeapon_Statics::NewProp_ReturnValue_SetBit(void* Obj)
 {
 	((TP_WeaponComponent_eventAttachWeapon_Parms*)Obj)->ReturnValue = 1;
@@ -75,7 +75,7 @@ UFunction* Z_Construct_UFunction_UTP_WeaponComponent_AttachWeapon()
 }
 DEFINE_FUNCTION(UTP_WeaponComponent::execAttachWeapon)
 {
-	P_GET_OBJECT(AMultiFlingueurCharacter,Z_Param_TargetCharacter);
+	P_GET_OBJECT(AMyCaracter,Z_Param_TargetCharacter);
 	P_FINISH;
 	P_NATIVE_BEGIN;
 	*(bool*)Z_Param__Result=P_THIS->AttachWeapon(Z_Param_TargetCharacter);
@@ -270,7 +270,7 @@ struct Z_Construct_UClass_UTP_WeaponComponent_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UTP_WeaponComponent_AttachWeapon, "AttachWeapon" }, // 1121697124
+		{ &Z_Construct_UFunction_UTP_WeaponComponent_AttachWeapon, "AttachWeapon" }, // 1937501431
 		{ &Z_Construct_UFunction_UTP_WeaponComponent_EndPlay, "EndPlay" }, // 3872396419
 		{ &Z_Construct_UFunction_UTP_WeaponComponent_Fire, "Fire" }, // 581434982
 	};
@@ -332,14 +332,14 @@ UTP_WeaponComponent::~UTP_WeaponComponent() {}
 // End Class UTP_WeaponComponent
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Unreal_Projects_TIRER_CPP_MultiCacaRacter_MultiFlingueur_Source_MultiFlingueur_TP_WeaponComponent_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Github_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_TP_WeaponComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UTP_WeaponComponent, UTP_WeaponComponent::StaticClass, TEXT("UTP_WeaponComponent"), &Z_Registration_Info_UClass_UTP_WeaponComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTP_WeaponComponent), 1865844912U) },
+		{ Z_Construct_UClass_UTP_WeaponComponent, UTP_WeaponComponent::StaticClass, TEXT("UTP_WeaponComponent"), &Z_Registration_Info_UClass_UTP_WeaponComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTP_WeaponComponent), 1900316584U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Unreal_Projects_TIRER_CPP_MultiCacaRacter_MultiFlingueur_Source_MultiFlingueur_TP_WeaponComponent_h_562966703(TEXT("/Script/MultiFlingueur"),
-	Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Unreal_Projects_TIRER_CPP_MultiCacaRacter_MultiFlingueur_Source_MultiFlingueur_TP_WeaponComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Unreal_Projects_TIRER_CPP_MultiCacaRacter_MultiFlingueur_Source_MultiFlingueur_TP_WeaponComponent_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Github_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_TP_WeaponComponent_h_1696412265(TEXT("/Script/MultiFlingueur"),
+	Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Github_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_TP_WeaponComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Github_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_TP_WeaponComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

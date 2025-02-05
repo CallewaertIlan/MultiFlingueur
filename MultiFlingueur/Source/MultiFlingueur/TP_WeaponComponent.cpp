@@ -2,7 +2,7 @@
 
 
 #include "TP_WeaponComponent.h"
-#include "MultiFlingueurCharacter.h"
+#include "MyCaracter.h"
 #include "MultiFlingueurProjectile.h"
 #include "GameFramework/PlayerController.h"
 #include "Camera/PlayerCameraManager.h"
@@ -48,25 +48,25 @@ void UTP_WeaponComponent::Fire()
 		}
 	}
 	
-	// Try and play the sound if specified
-	if (FireSound != nullptr)
-	{
-		UGameplayStatics::PlaySoundAtLocation(this, FireSound, Character->GetActorLocation());
-	}
-	
-	// Try and play a firing animation if specified
-	if (FireAnimation != nullptr)
-	{
-		// Get the animation object for the arms mesh
-		UAnimInstance* AnimInstance = Character->GetMesh1P()->GetAnimInstance();
-		if (AnimInstance != nullptr)
-		{
-			AnimInstance->Montage_Play(FireAnimation, 1.f);
-		}
-	}
+	//// Try and play the sound if specified
+	//if (FireSound != nullptr)
+	//{
+	//	UGameplayStatics::PlaySoundAtLocation(this, FireSound, Character->GetActorLocation());
+	//}
+	//
+	//// Try and play a firing animation if specified
+	//if (FireAnimation != nullptr)
+	//{
+	//	// Get the animation object for the arms mesh
+	//	UAnimInstance* AnimInstance = Character->GetMesh1P()->GetAnimInstance();
+	//	if (AnimInstance != nullptr)
+	//	{
+	//		AnimInstance->Montage_Play(FireAnimation, 1.f);
+	//	}
+	//}
 }
 
-bool UTP_WeaponComponent::AttachWeapon(AMultiFlingueurCharacter* TargetCharacter)
+bool UTP_WeaponComponent::AttachWeapon(AMyCaracter* TargetCharacter)
 {
 	Character = TargetCharacter;
 
@@ -78,11 +78,12 @@ bool UTP_WeaponComponent::AttachWeapon(AMultiFlingueurCharacter* TargetCharacter
 
 	// Attach the weapon to the First Person Character
 	FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, true);
-	AttachToComponent(Character->GetMesh1P(), AttachmentRules, FName(TEXT("GripPoint")));
+	AttachToComponent(Character->GetWeaponTransform(), AttachmentRules, FName(TEXT("GripPoint")));
 
 	// add the weapon as an instance component to the character
 	Character->AddInstanceComponent(this);
 
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Attach ???!"));
 	// Set up action bindings
 	if (APlayerController* PlayerController = Cast<APlayerController>(Character->GetController()))
 	{

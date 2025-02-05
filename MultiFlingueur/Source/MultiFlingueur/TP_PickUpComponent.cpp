@@ -19,13 +19,15 @@ void UTP_PickUpComponent::BeginPlay()
 void UTP_PickUpComponent::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	// Checking if it is a First Person Character overlapping
-	AMultiFlingueurCharacter* Character = Cast<AMultiFlingueurCharacter>(OtherActor);
-	if(Character != nullptr)
+	AMyCaracter* myCaracter = Cast<AMyCaracter>(OtherActor);
+	if (myCaracter != nullptr)
 	{
 		// Notify that the actor is being picked up
-		OnPickUp.Broadcast(Character);
+		OnPickUp.Broadcast(myCaracter);
 
 		// Unregister from the Overlap Event so it is no longer triggered
 		OnComponentBeginOverlap.RemoveAll(this);
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Pick up ???!"));
 	}
 }

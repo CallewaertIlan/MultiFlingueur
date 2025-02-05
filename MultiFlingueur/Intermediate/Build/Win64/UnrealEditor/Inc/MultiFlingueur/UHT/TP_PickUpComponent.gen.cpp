@@ -15,7 +15,7 @@ ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USphereComponent();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
-MULTIFLINGUEUR_API UClass* Z_Construct_UClass_AMultiFlingueurCharacter_NoRegister();
+MULTIFLINGUEUR_API UClass* Z_Construct_UClass_AMyCaracter_NoRegister();
 MULTIFLINGUEUR_API UClass* Z_Construct_UClass_UTP_PickUpComponent();
 MULTIFLINGUEUR_API UClass* Z_Construct_UClass_UTP_PickUpComponent_NoRegister();
 MULTIFLINGUEUR_API UFunction* Z_Construct_UDelegateFunction_MultiFlingueur_OnPickUp__DelegateSignature();
@@ -27,7 +27,7 @@ struct Z_Construct_UDelegateFunction_MultiFlingueur_OnPickUp__DelegateSignature_
 {
 	struct _Script_MultiFlingueur_eventOnPickUp_Parms
 	{
-		AMultiFlingueurCharacter* PickUpCharacter;
+		AMyCaracter* PickUpCharacter;
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -44,7 +44,7 @@ struct Z_Construct_UDelegateFunction_MultiFlingueur_OnPickUp__DelegateSignature_
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_MultiFlingueur_OnPickUp__DelegateSignature_Statics::NewProp_PickUpCharacter = { "PickUpCharacter", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_MultiFlingueur_eventOnPickUp_Parms, PickUpCharacter), Z_Construct_UClass_AMultiFlingueurCharacter_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_MultiFlingueur_OnPickUp__DelegateSignature_Statics::NewProp_PickUpCharacter = { "PickUpCharacter", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_MultiFlingueur_eventOnPickUp_Parms, PickUpCharacter), Z_Construct_UClass_AMyCaracter_NoRegister, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_MultiFlingueur_OnPickUp__DelegateSignature_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_MultiFlingueur_OnPickUp__DelegateSignature_Statics::NewProp_PickUpCharacter,
 };
@@ -60,11 +60,11 @@ UFunction* Z_Construct_UDelegateFunction_MultiFlingueur_OnPickUp__DelegateSignat
 	}
 	return ReturnFunction;
 }
-void FOnPickUp_DelegateWrapper(const FMulticastScriptDelegate& OnPickUp, AMultiFlingueurCharacter* PickUpCharacter)
+void FOnPickUp_DelegateWrapper(const FMulticastScriptDelegate& OnPickUp, AMyCaracter* PickUpCharacter)
 {
 	struct _Script_MultiFlingueur_eventOnPickUp_Parms
 	{
-		AMultiFlingueurCharacter* PickUpCharacter;
+		AMyCaracter* PickUpCharacter;
 	};
 	_Script_MultiFlingueur_eventOnPickUp_Parms Parms;
 	Parms.PickUpCharacter=PickUpCharacter;
@@ -208,7 +208,7 @@ struct Z_Construct_UClass_UTP_PickUpComponent_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UTP_PickUpComponent_Statics::NewProp_OnPickUp = { "OnPickUp", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTP_PickUpComponent, OnPickUp), Z_Construct_UDelegateFunction_MultiFlingueur_OnPickUp__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnPickUp_MetaData), NewProp_OnPickUp_MetaData) }; // 1279547750
+const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UTP_PickUpComponent_Statics::NewProp_OnPickUp = { "OnPickUp", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTP_PickUpComponent, OnPickUp), Z_Construct_UDelegateFunction_MultiFlingueur_OnPickUp__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnPickUp_MetaData), NewProp_OnPickUp_MetaData) }; // 1384918971
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UTP_PickUpComponent_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTP_PickUpComponent_Statics::NewProp_OnPickUp,
 };
@@ -250,14 +250,14 @@ UTP_PickUpComponent::~UTP_PickUpComponent() {}
 // End Class UTP_PickUpComponent
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Unreal_Projects_TIRER_CPP_MultiCacaRacter_MultiFlingueur_Source_MultiFlingueur_TP_PickUpComponent_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Github_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_TP_PickUpComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UTP_PickUpComponent, UTP_PickUpComponent::StaticClass, TEXT("UTP_PickUpComponent"), &Z_Registration_Info_UClass_UTP_PickUpComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTP_PickUpComponent), 3175330104U) },
+		{ Z_Construct_UClass_UTP_PickUpComponent, UTP_PickUpComponent::StaticClass, TEXT("UTP_PickUpComponent"), &Z_Registration_Info_UClass_UTP_PickUpComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTP_PickUpComponent), 765938494U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Unreal_Projects_TIRER_CPP_MultiCacaRacter_MultiFlingueur_Source_MultiFlingueur_TP_PickUpComponent_h_4199948976(TEXT("/Script/MultiFlingueur"),
-	Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Unreal_Projects_TIRER_CPP_MultiCacaRacter_MultiFlingueur_Source_MultiFlingueur_TP_PickUpComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Unreal_Projects_TIRER_CPP_MultiCacaRacter_MultiFlingueur_Source_MultiFlingueur_TP_PickUpComponent_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Github_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_TP_PickUpComponent_h_3286250429(TEXT("/Script/MultiFlingueur"),
+	Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Github_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_TP_PickUpComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_icallewaert_Documents_Github_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_TP_PickUpComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration
