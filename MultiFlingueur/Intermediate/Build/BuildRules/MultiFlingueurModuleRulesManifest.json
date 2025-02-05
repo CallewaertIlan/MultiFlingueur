@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"C:\\Users\\icallewaert\\Documents\\Unreal Projects\\TIRER_CPP\\MultiCacaRacter\\MultiFlingueur\\Source\\MultiFlingueur\\MultiFlingueur.Build.cs",
-		"C:\\Users\\icallewaert\\Documents\\Unreal Projects\\TIRER_CPP\\MultiCacaRacter\\MultiFlingueur\\Source\\MultiFlingueur.Target.cs",
-		"C:\\Users\\icallewaert\\Documents\\Unreal Projects\\TIRER_CPP\\MultiCacaRacter\\MultiFlingueur\\Source\\MultiFlingueurEditor.Target.cs"
+		"C:\\Users\\ljelinek\\Documents\\GitHub\\MultiFlingueur\\MultiFlingueur\\Source\\MultiFlingueur\\MultiFlingueur.Build.cs",
+		"C:\\Users\\ljelinek\\Documents\\GitHub\\MultiFlingueur\\MultiFlingueur\\Source\\MultiFlingueur.Target.cs",
+		"C:\\Users\\ljelinek\\Documents\\GitHub\\MultiFlingueur\\MultiFlingueur\\Source\\MultiFlingueurEditor.Target.cs"
 	],
 	"EngineVersion": "5.4.2"
 }

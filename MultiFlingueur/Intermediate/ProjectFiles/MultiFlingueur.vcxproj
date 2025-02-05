@@ -75,7 +75,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B4BC2F2B-71C5-3C0E-8957-2A5A12F5E6FF}</ProjectGuid>
+    <ProjectGuid>{34692141-B563-3D8A-AD7B-9801315E7A50}</ProjectGuid>
     <RootNamespace>MultiFlingueur</RootNamespace>
   </PropertyGroup>
   <Import Project="UECommon.props" />
