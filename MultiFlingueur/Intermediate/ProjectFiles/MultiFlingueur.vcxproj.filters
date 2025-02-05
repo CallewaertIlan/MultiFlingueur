@@ -11,6 +11,7 @@
     <None Include="..\..\Source\MultiFlingueurEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -76,6 +77,18 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\MultiFlingueur\TP_WeaponComponent.h">
       <Filter>Source\MultiFlingueur</Filter>
+    </ClInclude>
+    <Filter Include="Source\MultiFlingueur\Private">
+      <UniqueIdentifier>{6E6E324F-23F4-3DF6-96E0-6B2B7B7F6C09}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\MultiFlingueur\Private\MyCaracter.cpp">
+      <Filter>Source\MultiFlingueur\Private</Filter>
+    </ClCompile>
+    <Filter Include="Source\MultiFlingueur\Public">
+      <UniqueIdentifier>{1CB94A66-AD78-3D42-BEE0-893487317C3B}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\MultiFlingueur\Public\MyCaracter.h">
+      <Filter>Source\MultiFlingueur\Public</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
