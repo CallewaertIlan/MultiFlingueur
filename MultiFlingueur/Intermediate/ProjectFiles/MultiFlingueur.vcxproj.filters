@@ -84,10 +84,16 @@
     <ClCompile Include="..\..\Source\MultiFlingueur\Private\MyCaracter.cpp">
       <Filter>Source\MultiFlingueur\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\MultiFlingueur\Private\MyProjectile.cpp">
+      <Filter>Source\MultiFlingueur\Private</Filter>
+    </ClCompile>
     <Filter Include="Source\MultiFlingueur\Public">
       <UniqueIdentifier>{1CB94A66-AD78-3D42-BEE0-893487317C3B}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\MultiFlingueur\Public\MyCaracter.h">
+      <Filter>Source\MultiFlingueur\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MultiFlingueur\Public\MyProjectile.h">
       <Filter>Source\MultiFlingueur\Public</Filter>
     </ClInclude>
   </ItemGroup>

@@ -20,12 +20,52 @@ AMyCaracter::AMyCaracter()
 		ReplicationIndicatorMesh->SetStaticMesh(SphereMesh.Object);
 		ReplicationIndicatorMesh->SetWorldScale3D(FVector(0.5f)); // Scale it to a reasonable size
 	}
+	maxHealth = 100.0f;
+	currentHealth = maxHealth;
+}
+
+void AMyCaracter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	// Replicate current health
+	DOREPLIFETIME(AMyCaracter, currentHealth);
 }
 
 // Called when the game starts or when spawned
 void AMyCaracter::BeginPlay()
 {
 	Super::BeginPlay();
+
+		if (IsLocallyControlled())
+		{
+			// Set material based on local control (each player sees their own material)
+			ReplicationIndicatorMesh->SetMaterial(0, ClientMaterial);
+		}
+		else
+		{
+			// The server applies the server material, but only to itself
+			ReplicationIndicatorMesh->SetMaterial(0, ServerMaterial);
+		}
+}
+
+void AMyCaracter::OnRep_CurrentHealth()
+{
+	OnHealthUpdate();
+}
+
+void AMyCaracter::OnHealthUpdate()
+{
+	if (IsLocallyControlled()) {
+		FString healthMessage = FString::Printf(TEXT("You now have % f  health remaining."), currentHealth);
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, healthMessage);
+
+		if (currentHealth <= 0)
+		{
+			FString deathMessage = FString::Printf(TEXT("You have been killed."));
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, deathMessage);
+		}
+	}
 }
 
 // Called every frame
@@ -75,6 +115,22 @@ void AMyCaracter::MoveRight(float value)
 void AMyCaracter::Turn(float value)
 {
 	AddControllerYawInput(value);
+}
+
+void AMyCaracter::SetCurrentHealth(float healthValue)
+{
+	if (GetLocalRole() == ROLE_Authority)
+	{
+		currentHealth = FMath::Clamp(healthValue, 0.f, maxHealth);
+		OnHealthUpdate();
+	}
+}
+
+float AMyCaracter::TakeDamage(float DamageTaken, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	float damageApplied = currentHealth - DamageTaken;
+	SetCurrentHealth(damageApplied);
+	return damageApplied;
 }
 
 void AMyCaracter::LookUp(float value)

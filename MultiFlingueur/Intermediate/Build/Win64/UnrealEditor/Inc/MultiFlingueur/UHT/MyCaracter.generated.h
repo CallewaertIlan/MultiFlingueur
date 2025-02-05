@@ -9,21 +9,38 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AActor;
+class AController;
+struct FDamageEvent;
 #ifdef MULTIFLINGUEUR_MyCaracter_generated_h
 #error "MyCaracter.generated.h already included, missing '#pragma once' in MyCaracter.h"
 #endif
 #define MULTIFLINGUEUR_MyCaracter_generated_h
 
-#define FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execTakeDamage); \
+	DECLARE_FUNCTION(execSetCurrentHealth); \
+	DECLARE_FUNCTION(execGetCurrentHealth); \
+	DECLARE_FUNCTION(execGetMaxHealth); \
+	DECLARE_FUNCTION(execOnRep_CurrentHealth);
+
+
+#define FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_18_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMyCaracter(); \
 	friend struct Z_Construct_UClass_AMyCaracter_Statics; \
 public: \
 	DECLARE_CLASS(AMyCaracter, ACharacter, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/MultiFlingueur"), NO_API) \
-	DECLARE_SERIALIZER(AMyCaracter)
+	DECLARE_SERIALIZER(AMyCaracter) \
+	enum class ENetFields_Private : uint16 \
+	{ \
+		NETFIELD_REP_START=(uint16)((int32)Super::ENetFields_Private::NETFIELD_REP_END + (int32)1), \
+		currentHealth=NETFIELD_REP_START, \
+		NETFIELD_REP_END=currentHealth	}; \
+	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override;
 
 
-#define FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AMyCaracter(AMyCaracter&&); \
@@ -35,12 +52,13 @@ public: \
 	NO_API virtual ~AMyCaracter();
 
 
-#define FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_12_PROLOG
-#define FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_15_GENERATED_BODY \
+#define FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_15_PROLOG
+#define FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_18_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_15_INCLASS_NO_PURE_DECLS \
-	FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_15_ENHANCED_CONSTRUCTORS \
+	FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_18_INCLASS_NO_PURE_DECLS \
+	FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
