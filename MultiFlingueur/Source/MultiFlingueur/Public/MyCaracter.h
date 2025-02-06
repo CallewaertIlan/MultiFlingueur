@@ -1,9 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "MyProjectile.h" // Ensure this file exists and is properly included
 #include "InputAction.h"
 #include "InputMappingContext.h"
 #include "EnhancedInputComponent.h"
@@ -15,67 +14,76 @@
 UCLASS()
 class MULTIFLINGUEUR_API AMyCaracter : public ACharacter
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
-	AMyCaracter();
+    AMyCaracter();
 
-	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+    void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Visuals")
-	UStaticMeshComponent* ReplicationIndicatorMesh;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Visuals")
+    UStaticMeshComponent* ReplicationIndicatorMesh;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CACA")
-	UMaterialInstance* ClientMaterial;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CACA")
-	UMaterialInstance* ServerMaterial;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CACA")
+    UMaterialInstance* ClientMaterial;
 
-	/** Jump Input Action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputAction* JumpAction;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CACA")
+    UMaterialInstance* ServerMaterial;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+    UInputAction* JumpAction;
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    virtual void BeginPlay() override;
 
-	UPROPERTY (EditDefaultsOnly, Category = "Health")
-	float maxHealth;
+    UPROPERTY(EditDefaultsOnly, Category = "Health")
+    float maxHealth;
 
-	UPROPERTY(ReplicatedUsing = OnRep_CurrentHealth)
-	float currentHealth;
+    UPROPERTY(ReplicatedUsing = OnRep_CurrentHealth)
+    float currentHealth;
 
-	UFUNCTION()
-	void OnRep_CurrentHealth();
+    UFUNCTION()
+    void OnRep_CurrentHealth();
 
-	void OnHealthUpdate();
+    void OnHealthUpdate();
+
+    UPROPERTY(EditDefaultsOnly, Category = "Gameplay|Projectile")
+    TSubclassOf<class AMyProjectile> ProjectileClass;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Gameplay")
+    float FireRate;
+
+    bool bIsFiringWeapon;
+
+    UFUNCTION(BlueprintCallable, Category = "Gameplay")
+    void StartFire();
+
+    UFUNCTION(BlueprintCallable, Category = "Gameplay")
+    void StopFire();
+
+    UFUNCTION(Server, Reliable)
+    void HandleFire();
+
+    FTimerHandle FiringTimer;
 
 public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+    virtual void Tick(float DeltaTime) override;
+    virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+    void MoveForward(float value);
+    void MoveRight(float value);
+    void LookUp(float value);
+    void Turn(float value);
 
-	void MoveForward(float value);
-	void MoveRight(float value);
-	void LookUp(float value);
-	void Turn(float value);
+    UFUNCTION(BlueprintPure, Category = "Health")
+    FORCEINLINE float GetMaxHealth() const { return maxHealth; }
 
-	/** Getter for Max Health.*/
-	UFUNCTION(BlueprintPure, Category = "Health")
-	FORCEINLINE float GetMaxHealth() const { return maxHealth; }
+    UFUNCTION(BlueprintPure, Category = "Health")
+    FORCEINLINE float GetCurrentHealth() const { return currentHealth; }
 
-	/** Getter for Current Health.*/
-	UFUNCTION(BlueprintPure, Category = "Health")
-	FORCEINLINE float GetCurrentHealth() const { return currentHealth; }
+    UFUNCTION(BlueprintCallable, Category = "Health")
+    void SetCurrentHealth(float healthValue);
 
-	/** Setter for Current Health. Clamps the value between 0 and MaxHealth and calls OnHealthUpdate. Should only be called on the server.*/
-	UFUNCTION(BlueprintCallable, Category = "Health")
-	void SetCurrentHealth(float healthValue);
-
-	/** Event for taking damage. Overridden from APawn.*/
-	UFUNCTION(BlueprintCallable, Category = "Health")
-	float TakeDamage(float DamageTaken, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+    UFUNCTION(BlueprintCallable, Category = "Health")
+    float TakeDamage(float DamageTaken, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 };
-

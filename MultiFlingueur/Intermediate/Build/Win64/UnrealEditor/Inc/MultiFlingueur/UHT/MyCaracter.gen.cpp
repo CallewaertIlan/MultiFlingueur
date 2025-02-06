@@ -11,6 +11,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeMyCaracter() {}
 
 // Begin Cross Module References
+COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 ENGINE_API UClass* Z_Construct_UClass_AController_NoRegister();
@@ -20,6 +21,7 @@ ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FDamageEvent();
 ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputAction_NoRegister();
 MULTIFLINGUEUR_API UClass* Z_Construct_UClass_AMyCaracter();
 MULTIFLINGUEUR_API UClass* Z_Construct_UClass_AMyCaracter_NoRegister();
+MULTIFLINGUEUR_API UClass* Z_Construct_UClass_AMyProjectile_NoRegister();
 UPackage* Z_Construct_UPackage__Script_MultiFlingueur();
 // End Cross Module References
 
@@ -33,13 +35,7 @@ struct Z_Construct_UFunction_AMyCaracter_GetCurrentHealth_Statics
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
 		{ "Category", "Health" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "/** Getter for Current Health.*/" },
-#endif
 		{ "ModuleRelativePath", "Public/MyCaracter.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Getter for Current Health." },
-#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ReturnValue;
@@ -81,13 +77,7 @@ struct Z_Construct_UFunction_AMyCaracter_GetMaxHealth_Statics
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
 		{ "Category", "Health" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "/** Getter for Max Health.*/" },
-#endif
 		{ "ModuleRelativePath", "Public/MyCaracter.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Getter for Max Health." },
-#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ReturnValue;
@@ -118,6 +108,41 @@ DEFINE_FUNCTION(AMyCaracter::execGetMaxHealth)
 	P_NATIVE_END;
 }
 // End Class AMyCaracter Function GetMaxHealth
+
+// Begin Class AMyCaracter Function HandleFire
+static const FName NAME_AMyCaracter_HandleFire = FName(TEXT("HandleFire"));
+void AMyCaracter::HandleFire()
+{
+	UFunction* Func = FindFunctionChecked(NAME_AMyCaracter_HandleFire);
+	ProcessEvent(Func,NULL);
+}
+struct Z_Construct_UFunction_AMyCaracter_HandleFire_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/MyCaracter.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMyCaracter_HandleFire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMyCaracter, nullptr, "HandleFire", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00280CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMyCaracter_HandleFire_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMyCaracter_HandleFire_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AMyCaracter_HandleFire()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMyCaracter_HandleFire_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMyCaracter::execHandleFire)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->HandleFire_Implementation();
+	P_NATIVE_END;
+}
+// End Class AMyCaracter Function HandleFire
 
 // Begin Class AMyCaracter Function OnRep_CurrentHealth
 struct Z_Construct_UFunction_AMyCaracter_OnRep_CurrentHealth_Statics
@@ -158,13 +183,7 @@ struct Z_Construct_UFunction_AMyCaracter_SetCurrentHealth_Statics
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
 		{ "Category", "Health" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "/** Setter for Current Health. Clamps the value between 0 and MaxHealth and calls OnHealthUpdate. Should only be called on the server.*/" },
-#endif
 		{ "ModuleRelativePath", "Public/MyCaracter.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Setter for Current Health. Clamps the value between 0 and MaxHealth and calls OnHealthUpdate. Should only be called on the server." },
-#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_healthValue;
@@ -197,6 +216,66 @@ DEFINE_FUNCTION(AMyCaracter::execSetCurrentHealth)
 }
 // End Class AMyCaracter Function SetCurrentHealth
 
+// Begin Class AMyCaracter Function StartFire
+struct Z_Construct_UFunction_AMyCaracter_StartFire_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Gameplay" },
+		{ "ModuleRelativePath", "Public/MyCaracter.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMyCaracter_StartFire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMyCaracter, nullptr, "StartFire", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMyCaracter_StartFire_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMyCaracter_StartFire_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AMyCaracter_StartFire()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMyCaracter_StartFire_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMyCaracter::execStartFire)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->StartFire();
+	P_NATIVE_END;
+}
+// End Class AMyCaracter Function StartFire
+
+// Begin Class AMyCaracter Function StopFire
+struct Z_Construct_UFunction_AMyCaracter_StopFire_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Gameplay" },
+		{ "ModuleRelativePath", "Public/MyCaracter.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMyCaracter_StopFire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMyCaracter, nullptr, "StopFire", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMyCaracter_StopFire_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMyCaracter_StopFire_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AMyCaracter_StopFire()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMyCaracter_StopFire_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMyCaracter::execStopFire)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->StopFire();
+	P_NATIVE_END;
+}
+// End Class AMyCaracter Function StopFire
+
 // Begin Class AMyCaracter Function TakeDamage
 struct Z_Construct_UFunction_AMyCaracter_TakeDamage_Statics
 {
@@ -211,13 +290,7 @@ struct Z_Construct_UFunction_AMyCaracter_TakeDamage_Statics
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
 		{ "Category", "Health" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "/** Event for taking damage. Overridden from APawn.*/" },
-#endif
 		{ "ModuleRelativePath", "Public/MyCaracter.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Event for taking damage. Overridden from APawn." },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DamageEvent_MetaData[] = {
 		{ "NativeConst", "" },
@@ -275,8 +348,11 @@ void AMyCaracter::StaticRegisterNativesAMyCaracter()
 	static const FNameNativePtrPair Funcs[] = {
 		{ "GetCurrentHealth", &AMyCaracter::execGetCurrentHealth },
 		{ "GetMaxHealth", &AMyCaracter::execGetMaxHealth },
+		{ "HandleFire", &AMyCaracter::execHandleFire },
 		{ "OnRep_CurrentHealth", &AMyCaracter::execOnRep_CurrentHealth },
 		{ "SetCurrentHealth", &AMyCaracter::execSetCurrentHealth },
+		{ "StartFire", &AMyCaracter::execStartFire },
+		{ "StopFire", &AMyCaracter::execStopFire },
 		{ "TakeDamage", &AMyCaracter::execTakeDamage },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -310,19 +386,21 @@ struct Z_Construct_UClass_AMyCaracter_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_JumpAction_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Input" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "/** Jump Input Action */" },
-#endif
 		{ "ModuleRelativePath", "Public/MyCaracter.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Jump Input Action" },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_maxHealth_MetaData[] = {
 		{ "Category", "Health" },
 		{ "ModuleRelativePath", "Public/MyCaracter.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_currentHealth_MetaData[] = {
+		{ "ModuleRelativePath", "Public/MyCaracter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ProjectileClass_MetaData[] = {
+		{ "Category", "Gameplay|Projectile" },
+		{ "ModuleRelativePath", "Public/MyCaracter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_FireRate_MetaData[] = {
+		{ "Category", "Gameplay" },
 		{ "ModuleRelativePath", "Public/MyCaracter.h" },
 	};
 #endif // WITH_METADATA
@@ -332,14 +410,19 @@ struct Z_Construct_UClass_AMyCaracter_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_JumpAction;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_maxHealth;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_currentHealth;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_ProjectileClass;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_FireRate;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_AMyCaracter_GetCurrentHealth, "GetCurrentHealth" }, // 509947229
-		{ &Z_Construct_UFunction_AMyCaracter_GetMaxHealth, "GetMaxHealth" }, // 2472039638
+		{ &Z_Construct_UFunction_AMyCaracter_GetCurrentHealth, "GetCurrentHealth" }, // 560670592
+		{ &Z_Construct_UFunction_AMyCaracter_GetMaxHealth, "GetMaxHealth" }, // 2189189169
+		{ &Z_Construct_UFunction_AMyCaracter_HandleFire, "HandleFire" }, // 1863758730
 		{ &Z_Construct_UFunction_AMyCaracter_OnRep_CurrentHealth, "OnRep_CurrentHealth" }, // 2206556386
-		{ &Z_Construct_UFunction_AMyCaracter_SetCurrentHealth, "SetCurrentHealth" }, // 3236634804
-		{ &Z_Construct_UFunction_AMyCaracter_TakeDamage, "TakeDamage" }, // 2934524651
+		{ &Z_Construct_UFunction_AMyCaracter_SetCurrentHealth, "SetCurrentHealth" }, // 3431024984
+		{ &Z_Construct_UFunction_AMyCaracter_StartFire, "StartFire" }, // 705706415
+		{ &Z_Construct_UFunction_AMyCaracter_StopFire, "StopFire" }, // 2194812480
+		{ &Z_Construct_UFunction_AMyCaracter_TakeDamage, "TakeDamage" }, // 3143567931
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -353,6 +436,8 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyCaracter_St
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyCaracter_Statics::NewProp_JumpAction = { "JumpAction", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCaracter, JumpAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_JumpAction_MetaData), NewProp_JumpAction_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMyCaracter_Statics::NewProp_maxHealth = { "maxHealth", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCaracter, maxHealth), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_maxHealth_MetaData), NewProp_maxHealth_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMyCaracter_Statics::NewProp_currentHealth = { "currentHealth", "OnRep_CurrentHealth", (EPropertyFlags)0x0020080100000020, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCaracter, currentHealth), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_currentHealth_MetaData), NewProp_currentHealth_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMyCaracter_Statics::NewProp_ProjectileClass = { "ProjectileClass", nullptr, (EPropertyFlags)0x0024080000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCaracter, ProjectileClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AMyProjectile_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProjectileClass_MetaData), NewProp_ProjectileClass_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMyCaracter_Statics::NewProp_FireRate = { "FireRate", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCaracter, FireRate), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FireRate_MetaData), NewProp_FireRate_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMyCaracter_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCaracter_Statics::NewProp_ReplicationIndicatorMesh,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCaracter_Statics::NewProp_ClientMaterial,
@@ -360,6 +445,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMyCaract
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCaracter_Statics::NewProp_JumpAction,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCaracter_Statics::NewProp_maxHealth,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCaracter_Statics::NewProp_currentHealth,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCaracter_Statics::NewProp_ProjectileClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCaracter_Statics::NewProp_FireRate,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMyCaracter_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AMyCaracter_Statics::DependentSingletons[])() = {
@@ -406,14 +493,14 @@ AMyCaracter::~AMyCaracter() {}
 // End Class AMyCaracter
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_Lenny_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMyCaracter, AMyCaracter::StaticClass, TEXT("AMyCaracter"), &Z_Registration_Info_UClass_AMyCaracter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMyCaracter), 188933057U) },
+		{ Z_Construct_UClass_AMyCaracter, AMyCaracter::StaticClass, TEXT("AMyCaracter"), &Z_Registration_Info_UClass_AMyCaracter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMyCaracter), 2875200974U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_1510969032(TEXT("/Script/MultiFlingueur"),
-	Z_CompiledInDeferFile_FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_ljelinek_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Lenny_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_2615866021(TEXT("/Script/MultiFlingueur"),
+	Z_CompiledInDeferFile_FID_Users_Lenny_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Lenny_Documents_GitHub_MultiFlingueur_MultiFlingueur_Source_MultiFlingueur_Public_MyCaracter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

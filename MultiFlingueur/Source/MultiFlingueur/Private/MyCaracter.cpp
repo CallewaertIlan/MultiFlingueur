@@ -22,6 +22,12 @@ AMyCaracter::AMyCaracter()
 	}
 	maxHealth = 100.0f;
 	currentHealth = maxHealth;
+
+	//Initialize projectile class
+	ProjectileClass = AMyProjectile::StaticClass();
+	//Initialize fire rate
+	FireRate = 0.25f;
+	bIsFiringWeapon = false;
 }
 
 void AMyCaracter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -83,6 +89,8 @@ void AMyCaracter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMyCaracter::MoveRight);
 	PlayerInputComponent->BindAxis("LookUp", this, &AMyCaracter::LookUp);
 	PlayerInputComponent->BindAxis("Turn", this, &AMyCaracter::Turn);
+	// Handle firing projectiles
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AMyCaracter::StartFire);
 
 	// Jumping
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
@@ -136,4 +144,31 @@ float AMyCaracter::TakeDamage(float DamageTaken, FDamageEvent const& DamageEvent
 void AMyCaracter::LookUp(float value)
 {
 	AddControllerPitchInput(value);
+}
+void AMyCaracter::StartFire()
+{
+	if (!bIsFiringWeapon)
+	{
+		bIsFiringWeapon = true;
+		UWorld* World = GetWorld();
+		World->GetTimerManager().SetTimer(FiringTimer, this, &AMyCaracter::StopFire, FireRate, false);
+		HandleFire();
+	}
+}
+
+void AMyCaracter::StopFire()
+{
+	bIsFiringWeapon = false;
+}
+
+void AMyCaracter::HandleFire_Implementation()
+{
+	FVector spawnLocation = GetActorLocation() + (GetActorRotation().Vector() * 100.0f) + (GetActorUpVector() * 50.0f);
+	FRotator spawnRotation = GetActorRotation();
+
+	FActorSpawnParameters spawnParameters;
+	spawnParameters.Instigator = GetInstigator();
+	spawnParameters.Owner = this;
+
+	AMyProjectile* spawnedProjectile = GetWorld()->SpawnActor<AMyProjectile>(spawnLocation, spawnRotation, spawnParameters);
 }

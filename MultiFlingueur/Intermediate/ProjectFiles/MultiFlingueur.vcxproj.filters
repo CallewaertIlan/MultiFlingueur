@@ -39,45 +39,45 @@
     <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueur.cpp">
       <Filter>Source\MultiFlingueur</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\MultiFlingueur\MultiFlingueur.h">
+    <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueur.h">
       <Filter>Source\MultiFlingueur</Filter>
-    </ClInclude>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueurCharacter.cpp">
       <Filter>Source\MultiFlingueur</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\MultiFlingueur\MultiFlingueurCharacter.h">
+    <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueurCharacter.h">
       <Filter>Source\MultiFlingueur</Filter>
-    </ClInclude>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueurGameMode.cpp">
       <Filter>Source\MultiFlingueur</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\MultiFlingueur\MultiFlingueurGameMode.h">
+    <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueurGameMode.h">
       <Filter>Source\MultiFlingueur</Filter>
-    </ClInclude>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueurPlayerController.cpp">
       <Filter>Source\MultiFlingueur</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\MultiFlingueur\MultiFlingueurPlayerController.h">
+    <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueurPlayerController.h">
       <Filter>Source\MultiFlingueur</Filter>
-    </ClInclude>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueurProjectile.cpp">
       <Filter>Source\MultiFlingueur</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\MultiFlingueur\MultiFlingueurProjectile.h">
+    <ClCompile Include="..\..\Source\MultiFlingueur\MultiFlingueurProjectile.h">
       <Filter>Source\MultiFlingueur</Filter>
-    </ClInclude>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MultiFlingueur\TP_PickUpComponent.cpp">
       <Filter>Source\MultiFlingueur</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\MultiFlingueur\TP_PickUpComponent.h">
+    <ClCompile Include="..\..\Source\MultiFlingueur\TP_PickUpComponent.h">
       <Filter>Source\MultiFlingueur</Filter>
-    </ClInclude>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MultiFlingueur\TP_WeaponComponent.cpp">
       <Filter>Source\MultiFlingueur</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\MultiFlingueur\TP_WeaponComponent.h">
+    <ClCompile Include="..\..\Source\MultiFlingueur\TP_WeaponComponent.h">
       <Filter>Source\MultiFlingueur</Filter>
-    </ClInclude>
+    </ClCompile>
     <Filter Include="Source\MultiFlingueur\Private">
       <UniqueIdentifier>{6E6E324F-23F4-3DF6-96E0-6B2B7B7F6C09}</UniqueIdentifier>
     </Filter>
@@ -90,11 +90,11 @@
     <Filter Include="Source\MultiFlingueur\Public">
       <UniqueIdentifier>{1CB94A66-AD78-3D42-BEE0-893487317C3B}</UniqueIdentifier>
     </Filter>
-    <ClInclude Include="..\..\Source\MultiFlingueur\Public\MyCaracter.h">
+    <ClCompile Include="..\..\Source\MultiFlingueur\Public\MyCaracter.h">
       <Filter>Source\MultiFlingueur\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\MultiFlingueur\Public\MyProjectile.h">
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MultiFlingueur\Public\MyProjectile.h">
       <Filter>Source\MultiFlingueur\Public</Filter>
-    </ClInclude>
+    </ClCompile>
   </ItemGroup>
 </Project>

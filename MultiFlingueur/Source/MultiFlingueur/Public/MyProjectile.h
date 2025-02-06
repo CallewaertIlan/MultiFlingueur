@@ -3,16 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "MyProjectile.generated.h"
 
 
 /**
  * 
  */
-class MULTIFLINGUEUR_API MyProjectile : public AActor
+UCLASS()
+class MULTIFLINGUEUR_API AMyProjectile : public AActor
 {
+	GENERATED_BODY()
+
 public:
-	MyProjectile();
-	~MyProjectile();
+	AMyProjectile();
+	~AMyProjectile();
 
 	// Sphere component used to test collision.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")

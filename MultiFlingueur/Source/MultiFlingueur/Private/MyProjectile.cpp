@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
+#include "MyProjectile.h"
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
@@ -7,9 +7,10 @@
 #include "Particles/ParticleSystem.h"
 #include "Kismet/GameplayStatics.h"
 #include "UObject/ConstructorHelpers.h"
-#include "MyProjectile.h"
 
-MyProjectile::MyProjectile()
+
+
+AMyProjectile::AMyProjectile()
 {
 	bReplicates = true;
 
@@ -21,7 +22,7 @@ MyProjectile::MyProjectile()
 
 	if (GetLocalRole() == ROLE_Authority)
 	{
-		SphereComponent->OnComponentHit.AddDynamic(this, &AThirdPersonMPProjectile::OnProjectileImpact);
+		SphereComponent->OnComponentHit.AddDynamic(this, &AMyProjectile::OnProjectileImpact);
 	}
 
 	//Definition for the Mesh that will serve as your visual representation.
@@ -55,11 +56,11 @@ MyProjectile::MyProjectile()
 	Damage = 10.0f;
 }
 
-MyProjectile::~MyProjectile()
+AMyProjectile::~AMyProjectile()
 {
 }
 
-void MyProjectile::OnProjectileImpact(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+void AMyProjectile::OnProjectileImpact(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	if (OtherActor)
 	{
@@ -69,7 +70,7 @@ void MyProjectile::OnProjectileImpact(UPrimitiveComponent* HitComponent, AActor*
 	Destroy();
 }
 
-void MyProjectile::Destroyed()
+void AMyProjectile::Destroyed()
 {
 	FVector spawnLocation = GetActorLocation();
 	UGameplayStatics::SpawnEmitterAtLocation(this, ExplosionEffect, spawnLocation, FRotator::ZeroRotator, true, EPSCPoolMethod::AutoRelease);
