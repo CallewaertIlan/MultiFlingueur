@@ -20,12 +20,58 @@ AMyCaracter::AMyCaracter()
 		ReplicationIndicatorMesh->SetStaticMesh(SphereMesh.Object);
 		ReplicationIndicatorMesh->SetWorldScale3D(FVector(0.5f)); // Scale it to a reasonable size
 	}
+	maxHealth = 100.0f;
+	currentHealth = maxHealth;
+
+	//Initialize projectile class
+	ProjectileClass = AMyProjectile::StaticClass();
+	//Initialize fire rate
+	FireRate = 0.25f;
+	bIsFiringWeapon = false;
+}
+
+void AMyCaracter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	// Replicate current health
+	DOREPLIFETIME(AMyCaracter, currentHealth);
 }
 
 // Called when the game starts or when spawned
 void AMyCaracter::BeginPlay()
 {
 	Super::BeginPlay();
+
+		if (IsLocallyControlled())
+		{
+			// Set material based on local control (each player sees their own material)
+			ReplicationIndicatorMesh->SetMaterial(0, ClientMaterial);
+		}
+		else
+		{
+			// The server applies the server material, but only to itself
+			ReplicationIndicatorMesh->SetMaterial(0, ServerMaterial);
+		}
+}
+
+void AMyCaracter::OnRep_CurrentHealth()
+{
+	OnHealthUpdate();
+}
+
+void AMyCaracter::OnHealthUpdate()
+{
+	if (IsLocallyControlled()) {
+		FString healthMessage = FString::Printf(TEXT("You now have % f  health remaining."), currentHealth);
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, healthMessage);
+
+		if (currentHealth <= 0)
+		{
+			FString deathMessage = FString::Printf(TEXT("You have been killed."));
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, deathMessage);
+		}
+	}
 }
 
 // Called every frame
@@ -43,6 +89,8 @@ void AMyCaracter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMyCaracter::MoveRight);
 	PlayerInputComponent->BindAxis("LookUp", this, &AMyCaracter::LookUp);
 	PlayerInputComponent->BindAxis("Turn", this, &AMyCaracter::Turn);
+	// Handle firing projectiles
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AMyCaracter::StartFire);
 
 	// Jumping
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
@@ -77,7 +125,50 @@ void AMyCaracter::Turn(float value)
 	AddControllerYawInput(value);
 }
 
+void AMyCaracter::SetCurrentHealth(float healthValue)
+{
+	if (GetLocalRole() == ROLE_Authority)
+	{
+		currentHealth = FMath::Clamp(healthValue, 0.f, maxHealth);
+		OnHealthUpdate();
+	}
+}
+
+float AMyCaracter::TakeDamage(float DamageTaken, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	float damageApplied = currentHealth - DamageTaken;
+	SetCurrentHealth(damageApplied);
+	return damageApplied;
+}
+
 void AMyCaracter::LookUp(float value)
 {
 	AddControllerPitchInput(value);
+}
+void AMyCaracter::StartFire()
+{
+	if (!bIsFiringWeapon)
+	{
+		bIsFiringWeapon = true;
+		UWorld* World = GetWorld();
+		World->GetTimerManager().SetTimer(FiringTimer, this, &AMyCaracter::StopFire, FireRate, false);
+		HandleFire();
+	}
+}
+
+void AMyCaracter::StopFire()
+{
+	bIsFiringWeapon = false;
+}
+
+void AMyCaracter::HandleFire_Implementation()
+{
+	FVector spawnLocation = GetActorLocation() + (GetActorRotation().Vector() * 100.0f) + (GetActorUpVector() * 50.0f);
+	FRotator spawnRotation = GetActorRotation();
+
+	FActorSpawnParameters spawnParameters;
+	spawnParameters.Instigator = GetInstigator();
+	spawnParameters.Owner = this;
+
+	AMyProjectile* spawnedProjectile = GetWorld()->SpawnActor<AMyProjectile>(spawnLocation, spawnRotation, spawnParameters);
 }

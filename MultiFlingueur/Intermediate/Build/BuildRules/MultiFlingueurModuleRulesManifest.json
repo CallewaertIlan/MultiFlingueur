@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"C:\\Users\\ljelinek\\Documents\\GitHub\\MultiFlingueur\\MultiFlingueur\\Source\\MultiFlingueur\\MultiFlingueur.Build.cs",
-		"C:\\Users\\ljelinek\\Documents\\GitHub\\MultiFlingueur\\MultiFlingueur\\Source\\MultiFlingueur.Target.cs",
-		"C:\\Users\\ljelinek\\Documents\\GitHub\\MultiFlingueur\\MultiFlingueur\\Source\\MultiFlingueurEditor.Target.cs"
+		"C:\\Users\\Lenny\\Documents\\GitHub\\MultiFlingueur\\MultiFlingueur\\Source\\MultiFlingueur\\MultiFlingueur.Build.cs",
+		"C:\\Users\\Lenny\\Documents\\GitHub\\MultiFlingueur\\MultiFlingueur\\Source\\MultiFlingueur.Target.cs",
+		"C:\\Users\\Lenny\\Documents\\GitHub\\MultiFlingueur\\MultiFlingueur\\Source\\MultiFlingueurEditor.Target.cs"
 	],
-	"EngineVersion": "5.4.2"
+	"EngineVersion": "5.5.2"
 }
